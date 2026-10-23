@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseCampus AI - Automated Campus Grievance & Triage Portal</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <!-- Navbar -->
+  <header class="border-b border-slate-800 bg-slate-900/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center font-bold text-slate-950 text-lg shadow-lg shadow-indigo-500/20">
+          P
+        </div>
+        <div>
+          <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">PulseCampus AI</span>
+          <span class="text-xs ml-2 px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">Catalyst Powered</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 text-xs text-slate-400">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Zia AI Engine Ready</span>
+        <span class="hidden sm:inline border-l border-slate-800 pl-4">BITS Hackathon 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-3">
+      Campus Grievance & Maintenance <span class="bg-gradient-to-r from-indigo-400 via-sky-300 to-cyan-400 bg-clip-text text-transparent">AI Triage</span>
+    </h1>
+    <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+      Instant sentiment analysis, urgency detection, and automated department routing powered by Zoho Catalyst Intelligent Services.
+    </p>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="max-w-7xl mx-auto px-6 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- Submission Form (Left 5 Cols) -->
+    <div class="lg:col-span-5 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 shadow-xl backdrop-blur-sm">
+      <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <i data-lucide="edit-3" class="w-5 h-5 text-indigo-400"></i> Submit New Issue
+      </h2>
+
+      <form id="grievanceForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Campus Location / Department</label>
+          <input type="text" id="location" required placeholder="e.g. Block C Lab 302, Library 2nd Floor, Hostel 4"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition">
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Category Hint</label>
+          <select id="categoryHint" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 transition">
+            <option value="auto">⚡ Auto-Detect via AI</option>
+            <option value="Infrastructure">Infrastructure & Civil</option>
+            <option value="IT & Network">IT & Wi-Fi Network</option>
+            <option value="Electrical & Power">Electrical & HVAC</option>
+            <option value="Sanitation">Sanitation & Hygiene</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Detailed Description</label>
+          <textarea id="description" rows="4" required placeholder="Describe the issue in detail (e.g. Severe water leakage near main electric switchboard in Computer Lab 2! Sparking visible.)..."
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn"
+          class="w-full bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold py-2.5 px-4 rounded-xl shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2 text-sm transition transform active:scale-[0.99]">
+          <i data-lucide="sparkles" class="w-4 h-4"></i> Run Catalyst AI Triage & Log
+        </button>
+      </form>
+
+      <!-- Live Quick Samples -->
+      <div class="mt-6 pt-5 border-t border-slate-800/80">
+        <span class="text-xs font-medium text-slate-400 block mb-2.5">Quick Demo Samples (Click to load):</span>
+        <div class="flex flex-col gap-2">
+          <button type="button" onclick="loadSample(1)" class="text-left text-xs bg-slate-950 hover:bg-slate-800/70 p-2.5 rounded-lg border border-slate-800 transition text-slate-300">
+            <strong class="text-rose-400">[Critical]</strong> Sparking near lab switchboard
+          </button>
+          <button type="button" onclick="loadSample(2)" class="text-left text-xs bg-slate-950 hover:bg-slate-800/70 p-2.5 rounded-lg border border-slate-800 transition text-slate-300">
+            <strong class="text-amber-400">[Moderate]</strong> Library AC not cooling on 2nd floor
+          </button>
+          <button type="button" onclick="loadSample(3)" class="text-left text-xs bg-slate-950 hover:bg-slate-800/70 p-2.5 rounded-lg border border-slate-800 transition text-slate-300">
+            <strong class="text-emerald-400">[Minor]</strong> Suggestion to add paper recycling bins
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Dashboard & AI Analysis Feed (Right 7 Cols) -->
+    <div class="lg:col-span-7 space-y-6">
+      
+      <!-- Stats Metrics Cards -->
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Total Logged</div>
+          <div id="statTotal" class="text-2xl font-bold text-white mt-1">3</div>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4">
+          <div class="text-xs text-rose-400 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> High Priority</div>
+          <div id="statHigh" class="text-2xl font-bold text-rose-400 mt-1">1</div>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4">
+          <div class="text-xs text-emerald-400 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Auto-Assigned</div>
+          <div class="text-2xl font-bold text-emerald-400 mt-1">100%</div>
+        </div>
+      </div>
+
+      <!-- Feed Container -->
+      <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 shadow-xl">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <i data-lucide="activity" class="w-5 h-5 text-cyan-400"></i> AI Analyzed Triage Feed
+          </h2>
+          <span class="text-xs text-slate-500">Real-time classification</span>
+        </div>
+
+        <div id="grievanceFeed" class="space-y-4 max-h-[520px] overflow-y-auto pr-1">
+          <!-- Feed items inserted by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal for Catalyst Architecture Pitch -->
+  <footer class="max-w-7xl mx-auto px-6 py-6 border-t border-slate-800 text-center text-xs text-slate-500">
+    <p>Built for BITS Hackathon on <span class="text-slate-300 font-semibold">Zoho Catalyst Cloud-Scale Architecture</span>.</p>
+    <p class="mt-1">Microservices: Zia Intelligence API • Catalyst Relational Store • Catalyst Web Client Hosting</p>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // In-memory initial seed data
+    let records = [
+      {
+        id: 'GRV-9821',
+        location: 'CS Lab 3, Faraday Block',
+        text: 'Sparking observed near the secondary breaker board during afternoon practicals. Needs urgent shutdown.',
+        department: 'Electrical Safety Division',
+        priority: 'CRITICAL',
+        sentiment: 'Negative (-0.92)',
+        keywords: ['Sparking', 'Breaker board', 'Fire Hazard', 'Safety'],
+        time: '12 mins ago'
+      },
+      {
+        id: 'GRV-9820',
+        location: 'Central Library, 2nd Floor Reading Room',
+        text: 'Central air conditioning vents have stopped airflow for the last 3 hours, room temperature rising.',
+        department: 'HVAC Maintenance',
+        priority: 'MEDIUM',
+        sentiment: 'Negative (-0.45)',
+        keywords: ['AC Vents', 'Airflow', 'Reading Room'],
+        time: '34 mins ago'
+      },
+      {
+        id: 'GRV-9819',
+        location: 'Student Activity Center',
+        text: 'Can we install additional segregated paper and e-waste recycling bins near the entrance?',
+        department: 'Campus Sustainability & Waste',
+        priority: 'LOW',
+        sentiment: 'Positive (+0.75)',
+        keywords: ['Recycling Bins', 'Sustainability', 'E-waste'],
+        time: '1 hour ago'
+      }
+    ];
+
+    function renderFeed() {
+      const feed = document.getElementById('grievanceFeed');
+      feed.innerHTML = '';
+
+      let highCount = 0;
+
+      records.forEach(item => {
+        if (item.priority === 'CRITICAL' || item.priority === 'HIGH') highCount++;
+
+        let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
+        if (item.priority === 'CRITICAL') badgeColor = 'bg-rose-500/10 text-rose-400 border-rose-500/30';
+        else if (item.priority === 'HIGH') badgeColor = 'bg-orange-500/10 text-orange-400 border-orange-500/30';
+        else if (item.priority === 'MEDIUM') badgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+        else badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
+
+        const card = document.createElement('div');
+        card.className = "p-4 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-slate-700 transition space-y-3";
+        card.innerHTML = `
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono text-slate-400 font-semibold">${item.id} • <span class="text-slate-300">${item.location}</span></span>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full border text-[11px] font-semibold ${badgeColor}">${item.priority}</span>
+              <span class="text-slate-500">${item.time}</span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-200 leading-relaxed">${item.text}</p>
+          <div class="pt-2 border-t border-slate-800/60 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-1.5 text-indigo-400 font-medium">
+              <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+              <span>Routed to: <strong>${item.department}</strong></span>
+            </div>
+            <div class="flex items-center gap-1.5 text-slate-400">
+              <span class="text-[11px] text-slate-500">Sentiment:</span>
+              <span class="text-[11px] font-mono">${item.sentiment}</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            ${item.keywords.map(kw => `<span class="text-[10px] bg-slate-900 border border-slate-800 text-slate-400 px-2 py-0.5 rounded-md">#${kw}</span>`).join('')}
+          </div>
+        `;
+        feed.appendChild(card);
+      });
+
+      document.getElementById('statTotal').innerText = records.length;
+      document.getElementById('statHigh').innerText = highCount;
+      lucide.createIcons();
+    }
+
+    // AI Classification Engine simulation
+    function analyzeText(text) {
+      const lower = text.toLowerCase();
+      let priority = 'MEDIUM';
+      let dept = 'General Campus Admin';
+      let sentiment = 'Neutral (0.00)';
+      let keywords = [];
+
+      // Critical keywords
+      if (lower.includes('spark') || lower.includes('fire') || lower.includes('electric') || lower.includes('shock') || lower.includes('danger') || lower.includes('smoke')) {
+        priority = 'CRITICAL';
+        dept = 'Electrical Safety & Rapid Response';
+        sentiment = 'Urgent / Negative (-0.95)';
+        keywords.push('Electrical Hazard', 'Urgent Action');
+      } else if (lower.includes('leak') || lower.includes('water') || lower.includes('pipe') || lower.includes('toilet') || lower.includes('washroom') || lower.includes('drain')) {
+        priority = 'HIGH';
+        dept = 'Civil & Plumbing Services';
+        sentiment = 'Negative (-0.68)';
+        keywords.push('Plumbing', 'Water Maintenance');
+      } else if (lower.includes('wifi') || lower.includes('internet') || lower.includes('pc') || lower.includes('computer') || lower.includes('lab') || lower.includes('server')) {
+        priority = 'HIGH';
+        dept = 'Campus IT & Network Operations';
+        sentiment = 'Negative (-0.55)';
+        keywords.push('Network Downtime', 'IT Systems');
+      } else if (lower.includes('suggest') || lower.includes('request') || lower.includes('better') || lower.includes('tree') || lower.includes('green') || lower.includes('recycle')) {
+        priority = 'LOW';
+        dept = 'Campus Welfare & Environment';
+        sentiment = 'Constructive / Positive (+0.60)';
+        keywords.push('Initiative', 'Student Welfare');
+      } else {
+        priority = 'MEDIUM';
+        dept = 'Facilities & Estate Management';
+        sentiment = 'Moderate Concern (-0.20)';
+        keywords.push('Facility Maintenance');
+      }
+
+      // Add custom extracted words
+      const words = text.split(/\s+/).filter(w => w.length > 5).slice(0, 2);
+      words.forEach(w => keywords.push(w.replace(/[^a-zA-Z]/g, '')));
+
+      return { priority, dept, sentiment, keywords };
+    }
+
+    // Sample loader
+    function loadSample(num) {
+      if (num === 1) {
+        document.getElementById('location').value = "Lab 104, VLSI Research Block";
+        document.getElementById('categoryHint').value = "Electrical & Power";
+        document.getElementById('description').value = "Visible sparks and burning odor coming from wall outlet behind server rack 2. Immediate breaker isolation required!";
+      } else if (num === 2) {
+        document.getElementById('location').value = "Library 2nd Floor Quiet Zone";
+        document.getElementById('categoryHint').value = "Infrastructure";
+        document.getElementById('description').value = "Central cooling unit has been malfunctioning all morning. Excessive humidity and heat making study space unusable.";
+      } else if (num === 3) {
+        document.getElementById('location').value = "Auditorium Walkway";
+        document.getElementById('categoryHint').value = "Sanitation";
+        document.getElementById('description').value = "Great opportunity to set up dedicated compost bins for food waste outside the cafeteria stalls.";
+      }
+    }
+
+    // Handle Form Submit
+    document.getElementById('grievanceForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const loc = document.getElementById('location').value;
+      const desc = document.getElementById('description').value;
+      const btn = document.getElementById('submitBtn');
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-2">⟳</span> Zia AI Evaluating...`;
+
+      setTimeout(() => {
+        const analysis = analyzeText(desc);
+        const newRecord = {
+          id: 'GRV-' + Math.floor(1000 + Math.random() * 9000),
+          location: loc,
+          text: desc,
+          department: analysis.dept,
+          priority: analysis.priority,
+          sentiment: analysis.sentiment,
+          keywords: analysis.keywords,
+          time: 'Just now'
+        };
+
+        records.unshift(newRecord);
+        renderFeed();
+
+        // Reset form
+        document.getElementById('location').value = '';
+        document.getElementById('description').value = '';
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i> Run Catalyst AI Triage & Log`;
+        lucide.createIcons();
+      }, 700);
+    });
+
+    renderFeed();
+  </script>
+</body>
+</html>
