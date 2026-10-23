@@ -5,6 +5,12 @@ Built for the **BITS Hackathon** powered by **Zoho Catalyst Cloud Architecture**
 
 ---
 
+## 🔗 Project Links
+- **Live Deployed App:** [Launch PulseCampus AI](https://project-rainfall-60092953274.development.catalystserverless.in/app/)
+- **GitHub Repository:** [https://github.com/krishnayyar999-sudo/PULSE-CAMPUS-AI](https://github.com/krishnayyar999-sudo/PULSE-CAMPUS-AI)
+
+---
+
 ## 📌 Problem Statement
 Campus infrastructure breakdowns, safety hazards, and student grievances often face long delays due to manual ticketing. High-risk safety threats (like electrical sparking or water leaks) require immediate priority triage.
 
@@ -19,3 +25,4 @@ PulseCampus AI is an automated triage and dispatch portal powered by Zoho Cataly
 - **Hosting:** Catalyst Web Client Hosting
 - **AI / Triage Engine:** Catalyst Zia Services (Text Intelligence & Sentiment Analysis)
 - **Frontend:** Modern Responsive Single-Page Architecture (Tailwind CSS, Lucide Icons)
+
